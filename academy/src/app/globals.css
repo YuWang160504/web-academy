@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #178D8D;
+  --secondary-color: #2b6777;
+}
+
+body {
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: var(--primary-color);
+}
+
+.nav-link, .navbar-brand {
+  color: white !important;
+}
+
+.nav-logo {
+  width: 50px;
+}
+
+.hero {
+  background-color: #cfe8f3;
+  padding: 4rem 2rem;
+}
+
+.course-card img {
+  height: 150px;
+  object-fit: cover;
+}
+
+.profile-pic {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.logout-btn {
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+  margin-top: 1rem;
+  display: block;
+  width: 100%;
+}
+
+.logout-btn:hover {
+  background-color: #5e5e94;
+}
+
+@media (max-width: 991.98px) {
+  .navbar-search-hamburger {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .search-container {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+}
