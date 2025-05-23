@@ -31,6 +31,10 @@ const userSchema = new mongoose.Schema({
     enum: ['user', 'admin'],
     default: 'user'
   },
+  watchLater: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Video'
+  }],
   isVerified: {
     type: Boolean,
     default: false

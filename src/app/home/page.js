@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import ContactSection from '@/components/ContactSection';
+import Navigation from '@/components/Navigation';
 
 export default function HomePage() {
   const { data: session, status } = useSession();
@@ -47,62 +48,7 @@ export default function HomePage() {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-dark p-3" style={{ backgroundColor: '#128090' }}>
-        <div className="container-fluid">
-          <Link href="/home" className="navbar-brand">
-            <Image src="/logo.png" alt="Logo" width={40} height={40} />
-          </Link>
-
-          <div className="navbar-search-hamburger ms-auto d-flex d-lg-none align-items-center">
-            <input type="text" className="form-control rounded-pill me-2" placeholder="Search..." />
-            <button className="navbar-toggler me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <button 
-              className="btn btn-link p-0" 
-              onClick={() => setShowProfileModal(true)}
-            >
-              <Image
-                src="/profile.png"
-                width={40}
-                height={40}
-                alt="Profile"
-                className="rounded-circle"
-              />
-            </button>
-          </div>
-
-          <div className="d-none d-lg-flex flex-grow-1 justify-content-center">
-            <input type="text" className="form-control w-50 rounded-pill" placeholder="Search..." />
-          </div>
-
-          <div className="collapse navbar-collapse" id="navbarContent">
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <Link className="nav-link" href="/home">Home</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" href="/courses">Courses</Link>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#contact">Contact Us</a>
-              </li>
-            </ul>
-            <button 
-              className="btn btn-link p-0 d-none d-lg-block ms-3" 
-              onClick={() => setShowProfileModal(true)}
-            >
-              <Image
-                src="/profile.png"
-                width={40}
-                height={40}
-                alt="Profile"
-                className="rounded-circle"
-              />
-            </button>
-          </div>
-        </div>
-      </nav>
+      <Navigation />
 
       {showProfileModal && (
         <div className="modal show" style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }}>
@@ -238,6 +184,52 @@ export default function HomePage() {
         </div>
       )}
 
+      <section className="hero bg-light py-5 px-3 px-lg-5">
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-lg-6 mb-4 mb-lg-0 text-center text-lg-left">
+              <Image src="/fun.gif" alt="Animated student reading a book" width={300} height={300} className="mb-4" />
+              <h2 className="display-4 font-weight-bold">Welcome to Web Academy!</h2>
+              <p className="lead">Explore exciting courses that will help you shape your future and advance your career!</p>
+              <div className="mt-3 text-center text-lg-left" style={{ paddingLeft: '2rem' }}>
+                <Link href="/courses" className="btn btn-primary btn-lg rounded-pill px-4 py-2">Get Started</Link>
+              </div>
+            </div>
+
+            <div className="col-lg-6 text-center">
+              <Image src="/Technology.jpeg" alt="Digital learning concept" width={600} height={400} className="img-fluid rounded shadow-lg" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="courses" className="courses text-center py-5 bg-secondary text-white">
+        <h2>Explore Courses</h2>
+        <div className="course-grid d-flex justify-content-center flex-wrap gap-4">
+          <div className="course bg-light p-4 m-2 rounded text-dark">
+            <h3>Front-End Development</h3>
+            <Image src="/fE.jpeg" alt="Front-End" width={300} height={200} className="img-fluid" />
+          </div>
+          <div className="course bg-light p-4 m-2 rounded text-dark">
+            <h3>Back-End Development</h3>
+            <Image src="/BE.jpeg" alt="Back-End" width={300} height={200} className="img-fluid" />
+          </div>
+          <div className="course bg-light p-4 m-2 rounded text-dark">
+            <h3>Frameworks</h3>
+            <Image src="/FW.jpeg" alt="Frameworks" width={300} height={200} className="img-fluid" />
+          </div>
+        </div>
+      </section>
+
+      <section className="contact-form py-5 bg-white text-center">
+        <h2>Contact Us</h2>
+        <ContactSection />
+      </section>
+
+      <footer className="bg-dark text-white text-center py-3">
+        <p>© 2025 WEB Academy. All rights reserved</p>
+      </footer>
+
       <style jsx>{`
         .profile-tabs .nav-tabs {
           border-bottom: 1px solid #dee2e6;
@@ -249,92 +241,28 @@ export default function HomePage() {
           color: #6c757d;
           padding: 1rem;
           margin-right: 1rem;
-          font-weight: 500;
+          position: relative;
         }
 
         .profile-tabs .nav-link.active {
-          color: #0d6efd;
-          border-bottom: 2px solid #0d6efd;
+          color: #007bff;
           background: none;
         }
 
-        .profile-tabs .nav-link:hover {
-          border-color: transparent;
-          color: #0d6efd;
+        .profile-tabs .nav-link.active::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background-color: #007bff;
         }
 
-        .profile-info input {
-          background-color: #f8f9fa;
-        }
-
-        .form-check-input:checked {
-          background-color: #0d6efd;
-          border-color: #0d6efd;
-        }
-
-        .modal-content {
-          border-radius: 1rem;
-          border: none;
-        }
-
-        .modal-header {
-          padding: 1.5rem 1.5rem 0.5rem;
-        }
-
-        .modal-footer {
-          padding: 1rem 1.5rem 1.5rem;
-        }
-
-        .btn-close:focus {
-          box-shadow: none;
+        .tab-content {
+          min-height: 300px;
         }
       `}</style>
-
-      <section className="hero text-center">
-        <div className="container">
-          <Image src="/fun.gif" alt="Book" width={80} height={80} className="mb-3" />
-          <h2 className="fw-bold">Welcome to Web Academy!</h2>
-          <p className="lead">Explore exciting courses that will help you shape your future!</p>
-        </div>
-      </section>
-
-      <section className="text-center py-5 bg-light">
-        <div className="container">
-          <h2 className="mb-4">Explore Courses</h2>
-          <div className="row justify-content-center">
-            <div className="col-md-4 mb-3">
-              <div className="card course-card">
-                <Image src="/fE.jpeg" alt="Front-End" width={300} height={150} className="card-img-top" />
-                <div className="card-body">
-                  <h5 className="card-title">Front-End Development</h5>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4 mb-3">
-              <div className="card course-card">
-                <Image src="/BE.jpeg" alt="Back-End" width={300} height={150} className="card-img-top" />
-                <div className="card-body">
-                  <h5 className="card-title">Back-End Development</h5>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4 mb-3">
-              <div className="card course-card">
-                <Image src="/FW.jpeg" alt="Frameworks" width={300} height={150} className="card-img-top" />
-                <div className="card-body">
-                  <h5 className="card-title">Frameworks</h5>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <ContactSection />
-
-      <footer className="bg-black text-white text-center py-3">
-        <p>© 2025 WEB Academy. All rights reserved</p>
-      </footer>
     </>
   );
 } 

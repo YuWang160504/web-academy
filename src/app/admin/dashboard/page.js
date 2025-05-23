@@ -410,15 +410,6 @@ export default function AdminDashboard() {
             >
               <i className="fas fa-users me-2"></i> Users
             </button>
-            <button
-              style={{
-                ...sidebarButtonStyle,
-                marginTop: '2rem'
-              }}
-              onClick={() => setShowProfileModal(true)}
-            >
-              <i className="fas fa-cog me-2"></i> Settings
-            </button>
           </nav>
         </div>
         <div className="p-4 border-top">

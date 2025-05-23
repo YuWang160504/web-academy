@@ -15,6 +15,8 @@ export default function SignupPage() {
   });
   const [error, setError] = useState('');
   const [termsAccepted, setTermsAccepted] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const fileInputRef = useRef(null);
   const router = useRouter();
 
@@ -107,140 +109,158 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="container">
-      <div className="row justify-content-center align-items-center text-center text-md-start">
-        <div className="col-md-5 col-lg-4 mb-4 mb-md-0">
-          <div style={{ 
-            backgroundColor: '#d6f6f4',
-            borderRadius: '12px',
-            padding: '15px',
-            boxShadow: '2px 2px 10px rgba(0, 0, 0, 0.1)',
-            maxWidth: '400px',
-            width: '100%',
-            position: 'relative',
-            margin: '0 auto'
-          }}>
-            <Link href="/" style={{
-              position: 'absolute',
-              top: '10px',
-              right: '15px',
-              fontSize: '20px',
-              cursor: 'pointer',
-              color: '#230202',
-              textDecoration: 'none'
-            }}>&times;</Link>
-            <h2 className="text-center mb-3">Register</h2>
+    <div className="min-vh-100 d-flex align-items-center" style={{ background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)' }}>
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-12 col-md-8 col-lg-5">
+            <div className="card border-0 shadow-lg" style={{ borderRadius: '15px', overflow: 'hidden' }}>
+              <div className="card-body p-4">
+                <div className="text-center mb-3">
+                  <Image src="/logo.png" width={45} height={45} alt="Logo" className="mb-2" />
+                  <h3 className="fw-bold mb-1" style={{ color: '#2c3e50' }}>Create Account</h3>
+                  <p className="text-muted small mb-0">Join our learning community today</p>
+                </div>
 
-            {error && (
-              <div className="alert alert-danger" role="alert">
-                {error}
+                {error && (
+                  <div className="alert alert-danger py-2 d-flex align-items-center small" role="alert">
+                    <i className="fas fa-exclamation-circle me-2"></i>
+                    {error}
+                  </div>
+                )}
+
+                <form onSubmit={handleSubmit} className="needs-validation">
+                  <div className="mb-3">
+                    <label htmlFor="username" className="form-label text-muted fw-semibold small mb-1">
+                      <i className="fas fa-user me-2"></i>Username
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control bg-light py-2"
+                      id="username"
+                      name="username"
+                      placeholder="Enter your username"
+                      value={formData.username}
+                      onChange={handleInputChange}
+                      required
+                      style={{ borderRadius: '8px' }}
+                    />
+                  </div>
+
+                  <div className="mb-3">
+                    <label htmlFor="email" className="form-label text-muted fw-semibold small mb-1">
+                      <i className="fas fa-envelope me-2"></i>Email Address
+                    </label>
+                    <input
+                      type="email"
+                      className="form-control bg-light py-2"
+                      id="email"
+                      name="email"
+                      placeholder="Enter your email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                      style={{ borderRadius: '8px' }}
+                    />
+                  </div>
+
+                  <div className="mb-3">
+                    <label htmlFor="password" className="form-label text-muted fw-semibold small mb-1">
+                      <i className="fas fa-lock me-2"></i>Password
+                    </label>
+                    <div className="input-group">
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        className="form-control bg-light py-2"
+                        id="password"
+                        name="password"
+                        placeholder="Create password"
+                        value={formData.password}
+                        onChange={handleInputChange}
+                        required
+                        style={{ borderRadius: '8px 0 0 8px' }}
+                      />
+                      <button
+                        type="button"
+                        className="btn btn-light border"
+                        onClick={() => setShowPassword(!showPassword)}
+                        style={{ borderRadius: '0 8px 8px 0' }}
+                      >
+                        <i className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+                      </button>
+                    </div>
+                    <small className="form-text text-muted" style={{ fontSize: '0.7rem' }}>
+                      <i className="fas fa-info-circle me-1"></i>
+                      Password must be at least 12 characters and contain both letters and numbers.
+                    </small>
+                  </div>
+
+                  <div className="mb-3">
+                    <label htmlFor="confirmPassword" className="form-label text-muted fw-semibold small mb-1">
+                      <i className="fas fa-lock me-2"></i>Confirm Password
+                    </label>
+                    <div className="input-group">
+                      <input
+                        type={showConfirmPassword ? "text" : "password"}
+                        className="form-control bg-light py-2"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        placeholder="Verify password"
+                        value={formData.confirmPassword}
+                        onChange={handleInputChange}
+                        required
+                        style={{ borderRadius: '8px 0 0 8px' }}
+                      />
+                      <button
+                        type="button"
+                        className="btn btn-light border"
+                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                        style={{ borderRadius: '0 8px 8px 0' }}
+                      >
+                        <i className={`fas ${showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="mb-3">
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id="terms"
+                        checked={termsAccepted}
+                        onChange={(e) => setTermsAccepted(e.target.checked)}
+                      />
+                      <label className="form-check-label text-muted" style={{ fontSize: '0.8rem' }}>
+                        I agree to the <a href="#" className="text-decoration-none" style={{ color: '#067e70' }}>Terms of Service</a> and <a href="#" className="text-decoration-none" style={{ color: '#067e70' }}>Privacy Policy</a>
+                      </label>
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="btn w-100 text-white mb-3"
+                    style={{ 
+                      background: 'linear-gradient(to right, #067e70, #0aa192)',
+                      borderRadius: '8px',
+                      padding: '8px'
+                    }}
+                  >
+                    <i className="fas fa-user-plus me-2"></i>
+                    Create Account
+                  </button>
+
+                  <div className="text-center">
+                    <p className="text-muted small mb-0">
+                      Already have an account?{' '}
+                      <Link href="/login" className="text-decoration-none fw-semibold" style={{ color: '#067e70' }}>
+                        Sign In
+                      </Link>
+                    </p>
+                  </div>
+                </form>
               </div>
-            )}
-
-            <form onSubmit={handleSubmit}>
-              <div className="mb-3">
-                <label htmlFor="username" className="form-label fw-bold">Username</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="username"
-                  name="username"
-                  placeholder="Enter your username"
-                  value={formData.username}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-
-              <div className="mb-3">
-                <label htmlFor="email" className="form-label fw-bold">Email</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  id="email"
-                  name="email"
-                  placeholder="Enter your email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-
-              <div className="mb-3">
-                <label htmlFor="password" className="form-label fw-bold">Password</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="password"
-                  name="password"
-                  placeholder="Enter password"
-                  value={formData.password}
-                  onChange={handleInputChange}
-                  required
-                />
-                <small className="form-text text-muted">
-                  Password must be at least 12 characters and contain both letters and numbers.
-                </small>
-              </div>
-
-              <div className="mb-3">
-                <label htmlFor="confirmPassword" className="form-label fw-bold">Confirm Password</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  placeholder="Verify your password"
-                  value={formData.confirmPassword}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-
-              <div className="form-check mb-3 text-start">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  id="terms"
-                  checked={termsAccepted}
-                  onChange={(e) => setTermsAccepted(e.target.checked)}
-                />
-                <label className="form-check-label" htmlFor="terms" style={{ color: '#29645d' }}>
-                  I agree to the terms & conditions
-                </label>
-              </div>
-
-              <button
-                type="submit"
-                className="btn w-100 text-white"
-                style={{ backgroundColor: '#067e70' }}
-              >
-                Register
-              </button>
-
-              <div className="text-center mt-3">
-                Already have an account?{' '}
-                <Link href="/login" className="text-decoration-none" style={{ color: '#00796b' }}>
-                  Login
-                </Link>
-              </div>
-            </form>
+            </div>
           </div>
-        </div>
-
-        <div className="col-md-4 text-center">
-          <Image 
-            src="/go.png" 
-            width={300} 
-            height={300} 
-            alt="Cartoon Character" 
-            style={{
-              maxWidth: '100%',
-              height: 'auto',
-              marginTop: '1rem'
-            }}
-            className="mt-3 mt-md-0"
-          />
         </div>
       </div>
     </div>

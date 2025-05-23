@@ -313,6 +313,43 @@
   width: 100%;
 }
 
+.courseActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.watchLaterButton {
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #666;
+}
+
+.watchLaterButton:hover {
+  background-color: #f0f0f0;
+  color: #007bff;
+  border-color: #007bff;
+}
+
+.watchLaterButton.inWatchLater {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.watchLaterButton.inWatchLater:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 1rem;
