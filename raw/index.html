@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Web Academy</title>
+
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+
+  
+  <style>
+    .navbar {
+      background-color: #178D8D; 
+    }
+    .nav-link, .navbar-brand {
+      color: white !important;
+    }
+    .nav-logo {
+      width: 50px;
+    }
+    .search-container input {
+      max-width: 300px;
+    }
+    @media (max-width: 991.98px) {
+      .search-container {
+        flex-direction: column;
+      }
+    }
+    @media (max-width: 768px) {
+  .search-container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-dark d-flex align-items-center justify-content-between flex-wrap" style="background-color: #178D8D;">
+        
+        <!-- Logo -->
+        <a class="navbar-brand d-flex align-items-center mb-2 mb-lg-0" href="#">
+          <img src="logo.png" alt="Logo" class="nav-logo mr-2" style="width: 50px;">
+          Web Academy
+        </a>
+  
+        <!-- Search Bar + Icon -->
+        <div class="d-flex align-items-center flex-grow-1 justify-content-center my-2 my-lg-0" style="max-width: 500px;">
+          <input type="text" placeholder="Search..." class="form-control mr-2 w-100">
+          <button type="submit" class="btn btn-success">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+  
+        <!-- Hamburger Menu-->
+        <button class="navbar-toggler mb-2 mb-lg-0" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav text-center">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#courses">Courses</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">ContactUs</a></li>
+            <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+          </ul>
+        </div>
+  
+      </nav>
+    </div>
+  </header>
+  
+  
+  <!-- Hero Section -->
+<section class="hero bg-light py-5 px-3 px-lg-5">
+  <div class="container">
+    <div class="row align-items-center">
+      
+      
+      <div class="col-lg-6 mb-4 mb-lg-0 text-center text-lg-left">
+        <img src="fun.gif" alt="Animated student reading a book" class="mb-4 img-fluid" style="max-width: 300px;">
+        <h2 class="display-4 font-weight-bold">Welcome to Web Academy!</h2>
+        <p class="lead">Explore exciting courses that will help you shape your future and advance your career!</p>
+        
+       
+        <div class="mt-3 text-center text-lg-left" style="padding-left: 2rem;">
+          <button id="getStartedBtn" class="btn btn-primary btn-lg rounded-pill px-4 py-2">Get Started</button>
+        </div>
+      </div>
+
+      
+      <div class="col-lg-6 text-center">
+        <img src="Technology.jpeg" alt="Digital learning concept" class="img-fluid rounded shadow-lg" style="width: 100%; max-width: 600px;">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- Courses Section -->
+  <section id="courses" class="courses text-center py-5 bg-secondary text-white">
+    <h2>Explore Courses</h2>
+    <div class="course-grid d-flex justify-content-center flex-wrap gap-4">
+      <div class="course bg-light p-4 m-2 rounded text-dark">
+        <h3>Front-End Development</h3>
+        <img src="fE.jpeg" alt="Front-End" class="img-fluid">
+      </div>
+      <div class="course bg-light p-4 m-2 rounded text-dark">
+        <h3>Back-End Development</h3>
+        <img src="BE.jpeg" alt="Back-End" class="img-fluid">
+      </div>
+      <div class="course bg-light p-4 m-2 rounded text-dark">
+        <h3>Frameworks</h3>
+        <img src="FW.jpeg" alt="Frameworks" class="img-fluid">
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-form py-5 bg-white text-center">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Your Name" class="form-control mb-3" required>
+      <input type="email" placeholder="Your Email" class="form-control mb-3" required>
+      <textarea placeholder="Your Message" class="form-control mb-3" required></textarea>
+      <button type="submit" class="btn btn-primary w-100">Send Message</button>
+    </form>
+    <div id="contact" class="contact-info mt-4">
+      <p><strong>Email:</strong> ITAcademy123.edu.bt@gmail.com</p>
+      <p><strong>Phone:</strong> +975 77645387 / 77234567</p>
+      <p><strong>Postal Code:</strong> 123-34-556</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-3">
+    <p>© 2025 WEB Academy. All rights reserved</p>
+  </footer>
+
+ 
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const getStartedBtn = document.getElementById("getStartedBtn");
+      if (getStartedBtn) {
+        getStartedBtn.addEventListener("click", function () {
+          window.location.href = "signup.html";
+        });
+      }
+    });
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
